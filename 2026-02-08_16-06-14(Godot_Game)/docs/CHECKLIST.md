@@ -63,6 +63,13 @@
 - [x] Battle object visual prefabs added (`unit/building/spell/projectile/particle`).
 - [x] `BattleView` node manager added and wired to match lifecycle.
 - [x] Tower visuals wired as node-based objects.
+- [x] Hand cards converted to prefab UI nodes.
+- [x] Elixir bar converted to prefab UI nodes.
+- [x] Fan-hand layout with rotation and selected-card lift implemented.
+- [x] Drag arrow from selected card to cursor implemented.
+- [x] New hand card entry tween animation implemented.
+- [x] Unit spawn particle effects added.
+- [x] Unit name labels shown above units.
 - [x] Fallback rendering path retained when no `BattleView` is attached.
 - [x] Headless smoke test confirms battle view create/bind/clear flow.
-- [ ] Deck builder hand/elixir UI still procedural (next phase if required).
+- [ ] Full in-editor animation polish pass still required (manual visual tuning).

@@ -6,6 +6,7 @@ const StorageScript = preload("res://scripts/core/storage.gd")
 const DeckBuilder = preload("res://scripts/ui/deck_builder.gd")
 const BattleMatch = preload("res://scripts/battle/match.gd")
 const BattleViewScene = preload("res://scenes/battle/battle_view.tscn")
+const BattleHudScene = preload("res://scenes/ui/BattleHud.tscn")
 
 var game_state: int = Constants.GameState.MENU
 var game_data: RefCounted
@@ -22,6 +23,7 @@ var mouse_pos = Vector2.ZERO
 var view_scale = 1.0
 var view_offset = Vector2.ZERO
 var battle_view_node: Node2D = null
+var battle_hud_node: Control = null
 
 @onready var virtual_root: Control = $VirtualRoot
 @onready var menu_layer: Control = $VirtualRoot/MenuLayer
@@ -71,6 +73,8 @@ func _process(delta: float) -> void:
 		Constants.GameState.BATTLE:
 			if current_match != null:
 				current_match.update(delta)
+				if battle_hud_node != null and is_instance_valid(battle_hud_node):
+					battle_hud_node.call("sync_from_match", current_match, mouse_pos)
 				hovered_card = current_match.get_hovered_card()
 				if current_match.winner != null and post_game_delay < 0.0:
 					post_game_delay = 1.0
@@ -166,6 +170,7 @@ func _handle_left_click(position: Vector2) -> void:
 
 func _start_battle(selected_deck: Array) -> void:
 	_ensure_battle_view()
+	_ensure_battle_hud()
 	current_match = BattleMatch.new(
 		selected_deck,
 		[],
@@ -186,6 +191,7 @@ func _start_battle(selected_deck: Array) -> void:
 func _init_game() -> void:
 	game_state = Constants.GameState.MENU
 	current_match = null
+	_clear_battle_hud()
 	_clear_battle_view()
 	post_game_delay = -1.0
 	hovered_card = {}
@@ -271,6 +277,8 @@ func _refresh_ui() -> void:
 	menu_layer.visible = game_state == Constants.GameState.MENU
 	post_game_layer.visible = game_state == Constants.GameState.POST_GAME
 	hud_layer.visible = true
+	if battle_hud_node != null and is_instance_valid(battle_hud_node):
+		battle_hud_node.visible = game_state == Constants.GameState.BATTLE
 
 	menu_version_label.text = "Version %s" % Constants.APP_VERSION
 	fps_label.text = "FPS: %d" % floori(Engine.get_frames_per_second())
@@ -347,6 +355,24 @@ func _clear_battle_view() -> void:
 	if is_instance_valid(battle_view_node):
 		battle_view_node.queue_free()
 	battle_view_node = null
+
+
+func _ensure_battle_hud() -> void:
+	if battle_hud_node != null and is_instance_valid(battle_hud_node):
+		return
+	var instance = BattleHudScene.instantiate()
+	if instance is Control:
+		battle_hud_node = instance
+		virtual_root.add_child(battle_hud_node)
+		virtual_root.move_child(battle_hud_node, 1)
+
+
+func _clear_battle_hud() -> void:
+	if battle_hud_node == null:
+		return
+	if is_instance_valid(battle_hud_node):
+		battle_hud_node.queue_free()
+	battle_hud_node = null
 
 
 func _to_float(value: Variant, default_value: float = 0.0) -> float:

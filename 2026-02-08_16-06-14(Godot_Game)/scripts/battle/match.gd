@@ -117,8 +117,9 @@ func update(dt: float) -> void:
 func draw(canvas: CanvasItem) -> void:
 	_draw_arena_background(canvas)
 	var draw_world_fallback = not _has_view()
-	players[0].draw(canvas, self, draw_world_fallback)
-	players[1].draw(canvas, self, draw_world_fallback)
+	var draw_ui_fallback = not _has_view()
+	players[0].draw(canvas, self, draw_world_fallback, draw_ui_fallback)
+	players[1].draw(canvas, self, draw_world_fallback, draw_ui_fallback)
 	if draw_world_fallback:
 		game_objects.sort_custom(func(a, b): return a.pos.y < b.pos.y)
 		for obj in game_objects:
@@ -238,10 +239,12 @@ func spawn_game_object(card_data: Dictionary, player: PlayerState, position: Vec
 			var unit = Entities.Unit.new(spawn_pos.x, spawn_pos.y, friendly, unit_props, card_data)
 			game_objects.append(unit)
 			_notify_object_spawned(unit)
+			spawn_particle_effect(spawn_pos, 10, (Entities.COLOR_PLAYER if friendly else Entities.COLOR_AI), "spawn")
 	elif card_type == "building":
 		var building = Entities.Building.new(position.x, position.y, friendly, card_data)
 		game_objects.append(building)
 		_notify_object_spawned(building)
+		spawn_particle_effect(position, 14, (Entities.COLOR_PLAYER if friendly else Entities.COLOR_AI), "spawn")
 	elif card_type == "spell":
 		spawn_spell_effect(
 			card_data,
@@ -282,6 +285,7 @@ func spawn_template_unit(template_id: String, source_card_data: Dictionary, frie
 	var unit = Entities.Unit.new(position.x, position.y, friendly, props, source_card_data)
 	game_objects.append(unit)
 	_notify_object_spawned(unit)
+	spawn_particle_effect(position, 8, (Entities.COLOR_PLAYER if friendly else Entities.COLOR_AI), "spawn")
 
 
 func set_view(battle_view: Variant) -> void:

@@ -18,6 +18,7 @@ var _is_shielded := false
 var _unit_radius := Entities.TILE_SIZE * 0.45
 var _unit_color := Color.WHITE
 var _unit_is_air := false
+var _unit_name := ""
 
 var _building_size := Entities.TILE_SIZE * 1.5
 var _building_color := Color.WHITE
@@ -72,6 +73,7 @@ func _update_from_unit(unit: Variant) -> void:
 	_unit_radius = max(2.0, unit.get_collision_radius())
 	_unit_color = unit.color
 	_unit_is_air = unit.movement_type == "air"
+	_unit_name = str(unit.unit_name)
 	_hp = max(0.0, unit.hp)
 	_max_hp = max(0.01, unit.max_hp)
 	_show_hp = true
@@ -155,6 +157,7 @@ func _draw_unit() -> void:
 			_draw_hp_bar(bar_pos, max(20.0, _unit_radius * 2.0), 5.0, _shield_hp, _shield_max_hp, Color(0.8, 0.85, 1.0, 1.0))
 		else:
 			_draw_hp_bar(bar_pos, max(20.0, _unit_radius * 2.0), 5.0, _hp, _max_hp, Color(0.2, 1.0, 0.35, 1.0))
+	_draw_unit_name()
 
 
 func _draw_building() -> void:
@@ -213,3 +216,16 @@ func _draw_hp_bar(center: Vector2, width: float, height: float, hp: float, max_h
 	var bg = Rect2(center + Vector2(-width * 0.5, -height * 0.5), Vector2(width, height))
 	draw_rect(bg, Color(0.12, 0.12, 0.12, 0.9), true)
 	draw_rect(Rect2(bg.position, Vector2(width * pct, height)), fill_color, true)
+
+
+func _draw_unit_name() -> void:
+	if _unit_name == "":
+		return
+	var font: Font = ThemeDB.fallback_font
+	if font == null:
+		return
+	var font_size = 12
+	var w = font.get_string_size(_unit_name, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size).x
+	var base = Vector2(-w * 0.5, -_unit_radius - 18.0)
+	draw_string(font, base + Vector2(1.0, 1.0), _unit_name, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size, Color(0.0, 0.0, 0.0, 0.8))
+	draw_string(font, base, _unit_name, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size, Color(0.96, 0.96, 0.96, 1.0))

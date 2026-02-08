@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/hand_card.gd" id="1_hand_card"]
+
+[node name="HandCard" type="Control"]
+custom_minimum_size = Vector2(118, 160)
+offset_right = 118.0
+offset_bottom = 160.0
+mouse_filter = 2
+script = ExtResource("1_hand_card")
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 12.0
+offset_right = 110.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0.1, 0.1, 0.12, 1)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TypeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 102.0
+offset_right = 110.0
+offset_bottom = 132.0
+theme_override_colors/font_color = Color(0.1, 0.1, 0.12, 0.88)
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CostBadge" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 128.0
+offset_right = 78.0
+offset_bottom = 154.0
+color = Color(0.19, 0.19, 0.25, 0.85)
+
+[node name="CostLabel" type="Label" parent="CostBadge"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1

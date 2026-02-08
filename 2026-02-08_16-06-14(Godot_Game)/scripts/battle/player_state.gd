@@ -11,10 +11,14 @@ const PRINCESS_TOWER_Y_OFFSET = 60.0
 const PRINCESS_TOWER_X_SPACING = 200.0
 
 const DEFAULT_UI = {
-	"card_width": 80.0,
-	"card_height": 100.0,
-	"hand_center_y_offset": 120.0,
-	"hand_spacing": 10.0,
+	"card_width": 118.0,
+	"card_height": 160.0,
+	"hand_center_y_offset": 110.0,
+	"hand_spacing": 98.0,
+	"fan_spread": 168.0,
+	"fan_curve": 26.0,
+	"fan_angle_max": 14.0,
+	"selected_lift": 58.0,
 	"elixir_bar_width": 300.0,
 	"elixir_bar_height": 30.0,
 	"elixir_bar_bottom_offset": 40.0,
@@ -106,14 +110,53 @@ func get_hand_layout() -> Dictionary:
 	var card_height = Entities.as_float(ui["card_height"], 100.0)
 	var spacing = Entities.as_float(ui["hand_spacing"], 10.0)
 	var center_y = arena_size.y - Entities.as_float(ui["hand_center_y_offset"], 120.0)
-	var total_width = hand.size() * card_width + max(0, hand.size() - 1) * spacing
-	var start_x = arena_size.x * 0.5 - total_width * 0.5
+	var center_x = arena_size.x * 0.5
+	var total_width = card_width + max(0, hand.size() - 1) * spacing
+	var start_x = center_x - total_width * 0.5
 	return {
 		"card_width": card_width,
 		"card_height": card_height,
 		"spacing": spacing,
+		"center_x": center_x,
 		"center_y": center_y,
 		"start_x": start_x,
+		"fan_spread": Entities.as_float(ui["fan_spread"], 168.0),
+		"fan_curve": Entities.as_float(ui["fan_curve"], 26.0),
+		"fan_angle_max": Entities.as_float(ui["fan_angle_max"], 14.0),
+		"selected_lift": Entities.as_float(ui["selected_lift"], 58.0),
+	}
+
+
+func get_hand_card_pose(index: int) -> Dictionary:
+	var layout = get_hand_layout()
+	var center_x = Entities.as_float(layout.get("center_x", arena_size.x * 0.5), arena_size.x * 0.5)
+	var center_y = Entities.as_float(layout.get("center_y", arena_size.y - 120.0), arena_size.y - 120.0)
+	var fan_spread = Entities.as_float(layout.get("fan_spread", 168.0), 168.0)
+	var fan_curve = Entities.as_float(layout.get("fan_curve", 26.0), 26.0)
+	var fan_angle_max = Entities.as_float(layout.get("fan_angle_max", 14.0), 14.0)
+	var selected_lift = Entities.as_float(layout.get("selected_lift", 58.0), 58.0)
+
+	var count = hand.size()
+	var t = 0.0
+	if count > 1:
+		var half = (count - 1) * 0.5
+		t = (index - half) / max(half, 0.001)
+	var center = Vector2(
+		center_x + t * fan_spread,
+		center_y + absf(t) * fan_curve
+	)
+	var rotation_deg = t * fan_angle_max
+
+	if not selected_card_to_play.is_empty():
+		var selected_id = Entities.as_int(selected_card_to_play.get("id", -1), -1)
+		if index >= 0 and index < hand.size():
+			var card_id = Entities.as_int(hand[index].get("id", -1), -1)
+			if selected_id >= 0 and selected_id == card_id:
+				center.y -= selected_lift
+
+	return {
+		"center": center,
+		"rotation_deg": rotation_deg,
 	}
 
 
@@ -121,16 +164,15 @@ func get_clicked_card_index(pos: Vector2) -> int:
 	if not is_human:
 		return -1
 	var layout = get_hand_layout()
-	var card_width = Entities.as_float(layout["card_width"], 80.0)
-	var card_height = Entities.as_float(layout["card_height"], 100.0)
-	var start_x = Entities.as_float(layout["start_x"], 0.0)
-	var center_y = Entities.as_float(layout["center_y"], 0.0)
-	for i in hand.size():
-		var rect = Rect2(
-			Vector2(start_x + i * (card_width + Entities.as_float(layout["spacing"], 10.0)), center_y - card_height * 0.5),
-			Vector2(card_width, card_height)
-		)
-		if rect.has_point(pos):
+	var card_width = Entities.as_float(layout.get("card_width", 118.0), 118.0)
+	var card_height = Entities.as_float(layout.get("card_height", 160.0), 160.0)
+	var local_rect = Rect2(Vector2(-card_width * 0.5, -card_height * 0.5), Vector2(card_width, card_height))
+	for i in range(hand.size() - 1, -1, -1):
+		var pose = get_hand_card_pose(i)
+		var center: Vector2 = pose.get("center", Vector2.ZERO)
+		var rotation_deg = Entities.as_float(pose.get("rotation_deg", 0.0), 0.0)
+		var local = Transform2D(deg_to_rad(rotation_deg), center).affine_inverse() * pos
+		if local_rect.has_point(local):
 			return i
 	return -1
 
@@ -149,11 +191,11 @@ func get_ui_parameters() -> Dictionary:
 	return ui.duplicate(true)
 
 
-func draw(canvas: CanvasItem, match: Variant, draw_world: bool = true) -> void:
+func draw(canvas: CanvasItem, match: Variant, draw_world: bool = true, draw_ui: bool = true) -> void:
 	if draw_world:
 		for tower in towers:
 			tower.draw(canvas)
-	if not is_human:
+	if not is_human or not draw_ui:
 		return
 	_draw_elixir_bar(canvas)
 	_draw_hand(canvas, match)
