@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://crftr12ps6v3g"
+
+[deps]
+
+files=["res://data/cards.name.translation", "res://data/cards.type.translation", "res://data/cards.elixir.translation", "res://data/cards.rarity.translation", "res://data/cards.hp.translation", "res://data/cards.dmg.translation", "res://data/cards.speed.translation", "res://data/cards.attackRange.translation", "res://data/cards.description.translation", "res://data/cards.movementType.translation", "res://data/cards.targetType.translation", "res://data/cards.splashRadius.translation", "res://data/cards.spawnCount.translation", "res://data/cards.spawnUnitId.translation", "res://data/cards.special.translation"]
+
+source_file="res://data/cards.csv"
+dest_files=["res://data/cards.name.translation", "res://data/cards.type.translation", "res://data/cards.elixir.translation", "res://data/cards.rarity.translation", "res://data/cards.hp.translation", "res://data/cards.dmg.translation", "res://data/cards.speed.translation", "res://data/cards.attackRange.translation", "res://data/cards.description.translation", "res://data/cards.movementType.translation", "res://data/cards.targetType.translation", "res://data/cards.splashRadius.translation", "res://data/cards.spawnCount.translation", "res://data/cards.spawnUnitId.translation", "res://data/cards.special.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

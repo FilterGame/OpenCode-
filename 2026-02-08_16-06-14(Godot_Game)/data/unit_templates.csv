@@ -1,0 +1,4 @@
+id,name,hp,shieldHp,dmg,speed,attackRange,movementType,targetType,splashRadius,visual
+skeleton_basic,Skeleton,67,,67,fast,48,ground,any,0,"{""size"":15,""color"":[200,200,200]}"
+archer_single,Archer,250,,90,medium,200,ground,any,0,"{""size"":20,""color"":[255,100,200]}"
+guard_skeleton,Guard Skeleton,80,199,80,fast,48,ground,any,0,"{""size"":18,""color"":[180,180,220]}"

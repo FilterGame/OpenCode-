@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://1esup5aexftx"
+
+[deps]
+
+files=["res://data/config.key.translation", "res://data/config.value.translation"]
+
+source_file="res://data/config.csv"
+dest_files=["res://data/config.key.translation", "res://data/config.value.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

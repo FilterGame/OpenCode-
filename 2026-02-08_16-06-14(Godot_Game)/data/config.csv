@@ -1,0 +1,7 @@
+section,key,value
+STARTING_HP,king,4000
+STARTING_HP,princess,2000
+SPEED_MAP,slow,32
+SPEED_MAP,medium,48
+SPEED_MAP,fast,72
+SPEED_MAP,very fast,100

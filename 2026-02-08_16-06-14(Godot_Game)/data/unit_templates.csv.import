@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://vfw47d1fkpc"
+
+[deps]
+
+files=["res://data/unit_templates.name.translation", "res://data/unit_templates.hp.translation", "res://data/unit_templates.shieldHp.translation", "res://data/unit_templates.dmg.translation", "res://data/unit_templates.speed.translation", "res://data/unit_templates.attackRange.translation", "res://data/unit_templates.movementType.translation", "res://data/unit_templates.targetType.translation", "res://data/unit_templates.splashRadius.translation", "res://data/unit_templates.visual.translation"]
+
+source_file="res://data/unit_templates.csv"
+dest_files=["res://data/unit_templates.name.translation", "res://data/unit_templates.hp.translation", "res://data/unit_templates.shieldHp.translation", "res://data/unit_templates.dmg.translation", "res://data/unit_templates.speed.translation", "res://data/unit_templates.attackRange.translation", "res://data/unit_templates.movementType.translation", "res://data/unit_templates.targetType.translation", "res://data/unit_templates.splashRadius.translation", "res://data/unit_templates.visual.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

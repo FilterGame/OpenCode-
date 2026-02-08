@@ -1,0 +1,210 @@
+[gd_scene format=3 uid="uid://b5u0edmfe7joo"]
+
+[ext_resource type="Script" uid="uid://dhao8kre4pmrn" path="res://scripts/main.gd" id="1_main"]
+
+[node name="Main" type="Control" unique_id=2113474123]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="VirtualRoot" type="Control" parent="." unique_id=842019823]
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 1
+
+[node name="MenuLayer" type="Control" parent="VirtualRoot" unique_id=708194735]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBackground" type="ColorRect" parent="VirtualRoot/MenuLayer" unique_id=1523901554]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.196078, 0.235294, 0.27451, 1)
+
+[node name="MenuTitle" type="Label" parent="VirtualRoot/MenuLayer" unique_id=1846352978]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 280.0
+theme_override_colors/font_color = Color(0.882353, 0.882353, 0.882353, 1)
+theme_override_font_sizes/font_size = 52
+text = "Clash Royale (p5.js -> Godot)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="VirtualRoot/MenuLayer" unique_id=750709033]
+layout_mode = 0
+offset_left = 530.0
+offset_top = 374.0
+offset_right = 750.0
+offset_bottom = 458.0
+theme_override_font_sizes/font_size = 34
+text = "Start"
+
+[node name="VersionLabel" type="Label" parent="VirtualRoot/MenuLayer" unique_id=195472464]
+layout_mode = 0
+offset_top = 686.0
+offset_right = 1280.0
+offset_bottom = 716.0
+theme_override_colors/font_color = Color(0.862745, 0.862745, 0.862745, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PostGameLayer" type="Control" parent="VirtualRoot" unique_id=1960890519]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PostOverlay" type="ColorRect" parent="VirtualRoot/PostGameLayer" unique_id=814491619]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="PostTitleLabel" type="Label" parent="VirtualRoot/PostGameLayer" unique_id=228825513]
+layout_mode = 0
+offset_top = 170.0
+offset_right = 1280.0
+offset_bottom = 250.0
+theme_override_font_sizes/font_size = 72
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PostMessageLabel" type="Label" parent="VirtualRoot/PostGameLayer" unique_id=1058941147]
+layout_mode = 0
+offset_top = 275.0
+offset_right = 1280.0
+offset_bottom = 320.0
+theme_override_colors/font_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PostPlayerTowerLabel" type="Label" parent="VirtualRoot/PostGameLayer" unique_id=373320194]
+layout_mode = 0
+offset_top = 350.0
+offset_right = 1280.0
+offset_bottom = 390.0
+theme_override_colors/font_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PostAiTowerLabel" type="Label" parent="VirtualRoot/PostGameLayer" unique_id=1263386085]
+layout_mode = 0
+offset_top = 386.0
+offset_right = 1280.0
+offset_bottom = 426.0
+theme_override_colors/font_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PostPlayerCardsLabel" type="Label" parent="VirtualRoot/PostGameLayer" unique_id=700354009]
+layout_mode = 0
+offset_top = 422.0
+offset_right = 1280.0
+offset_bottom = 462.0
+theme_override_colors/font_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PostAiCardsLabel" type="Label" parent="VirtualRoot/PostGameLayer" unique_id=629030686]
+layout_mode = 0
+offset_top = 458.0
+offset_right = 1280.0
+offset_bottom = 498.0
+theme_override_colors/font_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PostContinueLabel" type="Label" parent="VirtualRoot/PostGameLayer" unique_id=1121273101]
+layout_mode = 0
+offset_top = 548.0
+offset_right = 1280.0
+offset_bottom = 600.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Click or press any key to return to menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HudLayer" type="Control" parent="VirtualRoot" unique_id=1848021804]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="FpsLabel" type="Label" parent="VirtualRoot/HudLayer" unique_id=404362259]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 220.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "FPS: 0"
+
+[node name="SoundLabel" type="Label" parent="VirtualRoot/HudLayer" unique_id=1026805040]
+layout_mode = 0
+offset_left = 940.0
+offset_top = 8.0
+offset_right = 1268.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Sound: ON (M)"
+horizontal_alignment = 2
+
+[node name="CardInfoPanel" type="Panel" parent="VirtualRoot" unique_id=66138295]
+visible = false
+layout_mode = 0
+offset_left = 30.0
+offset_top = 100.0
+offset_right = 350.0
+offset_bottom = 320.0
+mouse_filter = 2
+
+[node name="CardInfoLabel" type="Label" parent="VirtualRoot/CardInfoPanel" unique_id=1419349227]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.909804, 0.909804, 0.94902, 1)
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 2

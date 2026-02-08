@@ -1,0 +1,31 @@
+id,name,type,elixir,rarity,hp,dmg,speed,attackRange,description,movementType,targetType,splashRadius,spawnCount,spawnUnitId,special
+1,巨人 Giant,troop,5,rare,3400,200,medium,60,高血量，專攻建築,ground,buildings,0,,,
+2,皇家巨人 Royal Giant,troop,6,common,2500,150,slow,260,遠程坦克，直射塔,ground,buildings,0,,,
+3,小皮卡 Mini P.E.K.K.A,troop,4,rare,1100,600,fast,48,高單體傷害,ground,any,0,,,
+4,骷髏軍團 Skeleton Army,troop,3,epic,0,0,medium,0,大量 1 費骷髏群,ground,any,0,15,skeleton_basic,
+5,王子 Prince,troop,5,epic,1500,350,medium,64,蓄力衝刺雙倍傷害,ground,any,0,,,charge
+6,飛龍寶寶 Baby Dragon,troop,4,epic,1000,130,medium,140,空中範圍傷,air,any,60,,,
+7,女武神 Valkyrie,troop,4,rare,1600,220,medium,48,360° 迴旋 AOE,ground,ground,48,,,spin_attack
+8,火球 Fireball,spell,4,rare,0,570,n/a,100,中費範圍法術,n/a,any,100,,,
+9,滾木 The Log,spell,2,legendary,0,240,n/a,400,地面直線滾動,n/a,ground,120,,,linear_pushback
+10,箭雨 Arrows,spell,3,common,0,240,n/a,160,大範圍群傷,n/a,any,160,,,
+11,雷擊 Lightning,spell,6,epic,0,860,n/a,140,選 3 目標高傷,n/a,any,0,,,multi_target_3
+12,火塔 Inferno Tower,building,5,rare,1500,50,n/a,240,遞增傷坦克殺手,n/a,any,0,,,ramping_damage
+13,加農砲 Cannon,building,3,common,800,130,n/a,220,低費防坦建築,n/a,ground,0,,,
+14,特斯拉 Tesla,building,4,common,1000,190,n/a,220,潛地反空陸,n/a,any,0,,,hide_until_attack
+15,墓園 Graveyard,spell,5,legendary,0,0,n/a,140,在敵塔隨機生成骷髏,n/a,ground,,1,skeleton_basic,area_spawn_over_time
+16,冰凍 Freeze,spell,4,epic,0,100,n/a,120,定身並傷害,n/a,any,120,,,freeze
+17,女巫 Witch,troop,5,epic,700,110,medium,200,召骷髏＋AOE,ground,any,20,,,spawn_skeletons_periodically
+18,弓箭手 Archers,troop,3,common,250,90,medium,200,雙遠程輕單位,ground,any,0,2,archer_single,
+19,騎士 Knight,troop,3,common,1400,160,medium,48,中費平衡坦,ground,any,0,,,
+20,猴子 Bandit,troop,3,legendary,750,160,fast,32,瞬移衝刺,ground,ground,0,,,dash_attack
+21,電法 Electro Wizard,troop,4,legendary,600,100,fast,200,降低攻速暈眩,ground,any,0,,,stun_split_attack
+22,精靈 Spirit,troop,1,common,190,150,very fast,100,消耗循環,ground,any,60,,,kamikaze
+23,加農車 Cannon Cart,troop,5,epic,700,200,medium,220,破盾後變建築,ground,ground,0,,,shield_to_building
+24,X 砲 X-Bow,building,6,epic,1300,40,n/a,460,長射程火力,n/a,ground,0,,,fast_attack_rate
+25,氣球 Balloon,troop,5,epic,1300,700,medium,48,空坦克，死亡爆炸,air,buildings,0,,,death_damage
+26,女弓 Queen,troop,5,legendary,1000,200,medium,200,隱身技能,ground,any,0,,,invisibility_skill
+27,鏡像 Mirror,spell,+1,epic,0,0,n/a,0,重複上一張,n/a,n/a,,,,mirror_last_card
+28,骷髏守衛 Guards,troop,3,epic,80,80,fast,48,盾牌骷髏,ground,any,0,3,guard_skeleton,
+29,黃金騎士 Golden Knight,troop,4,legendary,1200,180,medium,48,連鎖衝,ground,ground,0,,,chain_dash
+30,鑽地礦工 Miner,troop,3,legendary,1000,130,fast,48,任意生成地底,ground,any,0,,,deploy_anywhere_ground

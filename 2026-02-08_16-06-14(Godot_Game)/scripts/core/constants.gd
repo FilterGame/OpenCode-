@@ -1,0 +1,55 @@
+extends RefCounted
+
+
+const APP_VERSION = "1.0.0"
+
+# Screen
+const CANVAS_WIDTH = 1280
+const CANVAS_HEIGHT = 720
+const FPS_TARGET = 60
+const TILE_SIZE = 40
+
+# Match and gameplay
+const ELIXIR_MAX = 10
+const ELIXIR_RATE_NORMAL = 1.0 / 2.8
+const ELIXIR_RATE_OVERTIME = 3.0 / 2.8
+
+const MATCH_DURATION_SECONDS = 3 * 60
+const OVERTIME_DURATION_SECONDS = 2 * 60
+const TIEBREAKER_DURATION_SECONDS = 30
+const TIEBREAKER_HP_LOSS_PER_SECOND = 100
+
+const KING_TOWER_Y_OFFSET = 50
+const PRINCESS_TOWER_Y_OFFSET = 60
+const PRINCESS_TOWER_X_SPACING = 200
+const BRIDGE_Y_POSITION = CANVAS_HEIGHT / 2
+const BRIDGE_WIDTH = 120
+const BRIDGE_HEIGHT = 60
+
+const AI_PLAY_INTERVAL_MIN = 3
+const AI_PLAY_INTERVAL_MAX = 7
+const AI_DEFEND_HP_THRESHOLD = 0.3
+
+const PARTICLE_LIMIT = 200
+
+# Colors (aligned with sketch.js RGB/RGBA values)
+const COLOR_PLAYER = Color8(50, 150, 255, 255)
+const COLOR_AI = Color8(255, 100, 100, 255)
+const COLOR_GROUND_UNIT = Color8(100, 100, 100, 255)
+const COLOR_AIR_UNIT = Color8(180, 180, 200, 255)
+const COLOR_BUILDING = Color8(150, 100, 50, 255)
+const COLOR_SPELL_EFFECT = Color8(200, 50, 200, 150)
+
+enum GameState {
+	MENU,
+	DECK_BUILDER,
+	BATTLE,
+	POST_GAME,
+}
+
+const STATE_NAMES = {
+	GameState.MENU: "MENU",
+	GameState.DECK_BUILDER: "DECK_BUILDER",
+	GameState.BATTLE: "BATTLE",
+	GameState.POST_GAME: "POST_GAME",
+}
