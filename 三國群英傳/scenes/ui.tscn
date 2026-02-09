@@ -1,0 +1,240 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/battle_ui.gd" id="1_ui"]
+[ext_resource type="Script" path="res://scripts/ui/portrait_draw.gd" id="2_portrait"]
+
+[node name="BattleUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ui")
+
+[node name="MenuBtn" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 540.0
+offset_top = 20.0
+offset_right = 740.0
+offset_bottom = 68.0
+text = "Command"
+
+[node name="BottomBar" type="PanelContainer" parent="."]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+offset_bottom = 0.0
+
+[node name="Margin" type="MarginContainer" parent="BottomBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBox" type="HBoxContainer" parent="BottomBar/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LeftBox" type="HBoxContainer" parent="BottomBar/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="PortraitFrame" type="PanelContainer" parent="BottomBar/Margin/HBox/LeftBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 100)
+
+[node name="P1Portrait" type="Control" parent="BottomBar/Margin/HBox/LeftBox/PortraitFrame"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_portrait")
+is_player = true
+
+[node name="Stats" type="VBoxContainer" parent="BottomBar/Margin/HBox/LeftBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="BottomBar/Margin/HBox/LeftBox/Stats"]
+layout_mode = 2
+text = "Zhang Fei"
+
+[node name="P1HpBar" type="ProgressBar" parent="BottomBar/Margin/HBox/LeftBox/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 500.0
+value = 500.0
+show_percentage = false
+
+[node name="P1HpText" type="Label" parent="BottomBar/Margin/HBox/LeftBox/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "500"
+
+[node name="P1MpBar" type="ProgressBar" parent="BottomBar/Margin/HBox/LeftBox/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="P1Troops" type="Label" parent="BottomBar/Margin/HBox/LeftBox/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Troops 25"
+
+[node name="CenterBox" type="VBoxContainer" parent="BottomBar/Margin/HBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(150, 120)
+alignment = 1
+
+[node name="TimerTitle" type="Label" parent="BottomBar/Margin/HBox/CenterBox"]
+layout_mode = 2
+text = "Time"
+horizontal_alignment = 1
+
+[node name="TimerValue" type="Label" parent="BottomBar/Margin/HBox/CenterBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "99"
+horizontal_alignment = 1
+
+[node name="RightBox" type="HBoxContainer" parent="BottomBar/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Stats" type="VBoxContainer" parent="BottomBar/Margin/HBox/RightBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="BottomBar/Margin/HBox/RightBox/Stats"]
+layout_mode = 2
+text = "Lu Bu"
+horizontal_alignment = 2
+
+[node name="P2HpBar" type="ProgressBar" parent="BottomBar/Margin/HBox/RightBox/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 800.0
+value = 800.0
+show_percentage = false
+
+[node name="P2HpText" type="Label" parent="BottomBar/Margin/HBox/RightBox/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "800"
+horizontal_alignment = 2
+
+[node name="P2Troops" type="Label" parent="BottomBar/Margin/HBox/RightBox/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Troops 25"
+horizontal_alignment = 2
+
+[node name="PortraitFrame" type="PanelContainer" parent="BottomBar/Margin/HBox/RightBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 100)
+
+[node name="P2Portrait" type="Control" parent="BottomBar/Margin/HBox/RightBox/PortraitFrame"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_portrait")
+is_player = false
+
+[node name="CommandOverlay" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="Center" type="CenterContainer" parent="CommandOverlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="CommandOverlay/Center"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MenuTitle" type="Label" parent="CommandOverlay/Center/VBox"]
+layout_mode = 2
+text = "Command Menu"
+horizontal_alignment = 1
+
+[node name="CmdRow" type="HBoxContainer" parent="CommandOverlay/Center/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CmdCharge" type="Button" parent="CommandOverlay/Center/VBox/CmdRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Charge"
+
+[node name="CmdHold" type="Button" parent="CommandOverlay/Center/VBox/CmdRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Hold"
+
+[node name="CmdRetreat" type="Button" parent="CommandOverlay/Center/VBox/CmdRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Retreat"
+
+[node name="CmdSkill" type="Button" parent="CommandOverlay/Center/VBox/CmdRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Skill"
+
+[node name="CutsceneOverlay" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.05, 0.05, 0.9)
+
+[node name="SkillText" type="Label" parent="CutsceneOverlay"]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -35.0
+offset_right = 150.0
+offset_bottom = 35.0
+text = "Crescent"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartOverlay" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.3)
+
+[node name="StartText" type="Label" parent="StartOverlay"]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -40.0
+offset_right = 200.0
+offset_bottom = 40.0
+text = "Battle Start"
+horizontal_alignment = 1
+vertical_alignment = 1

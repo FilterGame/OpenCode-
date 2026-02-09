@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/game/battle_game.gd" id="1_game"]
+[ext_resource type="Script" path="res://scripts/game/background_renderer.gd" id="2_bg"]
+[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="3_ui"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_game")
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("2_bg")
+
+[node name="WorldLayer" type="Node2D" parent="."]
+
+[node name="UnitContainer" type="Node2D" parent="WorldLayer"]
+
+[node name="EffectContainer" type="Node2D" parent="WorldLayer"]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="BattleUI" parent="UILayer" instance=ExtResource("3_ui")]
+
+[node name="SecondTimer" type="Timer" parent="."]
+wait_time = 1.0
+autostart = true

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/visual/hit_particle.gd" id="1_d0tkb"]
+
+[node name="HitParticle" type="Node2D"]
+script = ExtResource("1_d0tkb")
+lifetime = 0.42

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/visual/army_unit.gd" id="1_i4vfi"]
+
+[node name="Unit" type="Node2D"]
+script = ExtResource("1_i4vfi")
+display_name = "?????
+move_speed = 66.0
+max_hp = 24
+hp = 24
+max_mp = 0
+mp = 0
+troops = 1
